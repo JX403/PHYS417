@@ -1,0 +1,39 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def scale_data(data):
+    mean = np.mean(data, axis=0)
+    std = np.std(data, axis=0)
+    scaled_data = (data - mean) / std
+    return scaled_data
+
+data = np.array([
+    [179.50383, -23.632137, -7.878280, -0.0435, -0.130090, 0.200126, 462412],
+    [-143.63881, 110.21794, -72.706795, -0.3915, 2.487094, 2.734594, 493395],
+    [179.50383, -23.632120, -146.429610, -0.7395, -0.130090, 0.423910, 1],
+    [-172.67310, 54.443620, -238.065340, -1.0875, 2.836160, 0.713950, 493640],
+    [-180.88046, 7.897389, -238.065340, -1.0875, 3.097550, 0.000000, 495225],
+    [-180.88045, -7.897438, -238.065340, -1.0875, -3.097595, 0.034491, 495225],
+    [-152.69838, 97.279580, -265.020540, -1.1745, -2.574361, 0.580138, 462126],
+    [-23.63213, 179.503810, -325.172060, -1.3485, -3.108690, 1.104360, 465028],
+    [-152.69835, 97.279594, 89.977780, 0.4785, 2.574361, 0.181341, 1363],
+    [-176.76110, 39.187016, 107.930240, 0.5655, 2.923242, 0.337551, 4421]
+])
+                 
+
+scaled_data = scale_data(data)
+print("Scaled Data:\n", scaled_data)
+
+def plot_scaled_data(scaled_data):
+    num_columns = scaled_data.shape[1]
+    column_names = ['x', 'y', 'z', 'eta', 'phi', 'energy', 'trackId']
+
+    for i in range(num_columns):
+        plt.hist(scaled_data[:, i], bins=15, alpha=0.6, label=f'Column {column_names[i]}')
+    
+    plt.legend()
+    plt.title('Histogram of Scaled Data')
+    plt.xlabel('Scaled Value')
+    plt.ylabel('Frequency')
+    plt.show()
+plot_scaled_data(scaled_data)
