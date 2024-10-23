@@ -17,7 +17,7 @@ data = np.array([
 
 # row-wise then column-wise
 
-split_proportion = [0.2, 0, 5, 0.8]
+split_proportion = [0.2, 0.5, 0.8]
 axis = [0, 1]
 if axis.0 == 0:
     for i in data:
